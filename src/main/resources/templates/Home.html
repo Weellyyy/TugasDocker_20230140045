@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .welcome-text {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .input-link {
+            display: inline-block;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .input-link:hover {
+            text-decoration: underline;
+        }
+        .table-title {
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .empty-message {
+            text-align: center;
+            color: #999;
+            padding: 20px;
+            font-size: 14px;
+        }
+        .logout-link {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .logout-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>MY Website 20230140045</h1>
+    <p class="welcome-text">Selamat datang di aplikasi!</p>
+
+    <a href="/input" class="input-link">+ Input Data Mahasiswa</a>
+
+    <div class="table-title">Data Mahasiswa</div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>NIM</th>
+            <th>Jenis Kelamin</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${users.isEmpty()}">
+            <td colspan="4" class="empty-message">Belum ada data</td>
+        </tr>
+        <tr th:each="user, stat : ${users}">
+            <td th:text="${stat.count}"></td>
+            <td th:text="${user.nama}"></td>
+            <td th:text="${user.nim}"></td>
+            <td th:text="${user.jenisKelamin}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="/logout" class="logout-link">Logout</a>
+</div>
+</body>
+</html>
